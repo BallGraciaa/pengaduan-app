@@ -44,9 +44,10 @@ route::get('dashboardadmin',[Administrator_Controller::class,'dashboardadmin']);
 Route::get('loginadmin',[Administrator_Controller::class,'loginadmin']);
 route::post('loginadmin',[Administrator_Controller::class,'ceklogin']);
 route::get('regisadmin',[Administrator_Controller::class,'regis']);
+route::post('regisadmin',[Administrator_Controller::class,'regisadminn']);
 route::get('validasi',[Administrator_Controller::class,'validasi']);
 route::post('el',[Administrator_Controller::class,'petugas']);
-
+route::get('tanggapan',[Administrator_Controller::class,'tanggapann']);
 });
 
 // Route::get('/');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\pengaduan;
 use App\Models\petugas;
+use App\Models\tanggapan;
 use Illuminate\Http\Request;
 
 class Administrator_Controller extends Controller
@@ -32,12 +33,12 @@ class Administrator_Controller extends Controller
         return view('admin.registrasiadmin');
     }
 
-    public function masyarakat(Request $request){
+    public function regisadminn(Request $request){
         $el = new petugas();
         //Cek data yang dikirim user
 
         $col= $request->validate([
-            'id_petugas'=>'required|unique:petugas|max:4',
+            'id_petugas'=>'required',
             'nama_petugas'=>'required',
             'username'=>'required|min:6',
             'password'=>'required|min:4',
@@ -60,5 +61,12 @@ class Administrator_Controller extends Controller
 
     public function dashboardadmin(){
         return view('admin.dashboardadmin');
+    }
+    public function tanggapanadm(){
+        return view('admin.tanggapanadmin');
+    }
+    public function tanggapann(){
+        $lapor = new tanggapan;
+        return view('admin.tanggapanadmin',['merek'=>$lapor->all()]); 
     }
 }
