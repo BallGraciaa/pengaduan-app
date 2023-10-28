@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\masyarakat;
+use App\Models\pengaduan;
 use Illuminate\Http\Request;
 
 class MasyarakatController extends Controller
@@ -16,6 +17,7 @@ class MasyarakatController extends Controller
     public function masyarakat(Request $request){
         $ol = new masyarakat();
         //Cek data yang dikirim user
+        
 
         $cek= $request->validate([
             'nik'=>'required|unique:masyarakat|max:16',
@@ -52,8 +54,39 @@ class MasyarakatController extends Controller
         return back()->with('pesan','Username dan password tidak terdaftar');
     }
      
-    public function tambah(request $request){
+    public function buatlapor(request $request){
         return view ('tambah');
+        
+    }
+    public function lapor(Request $request){
+        $i = new pengaduan();
+       
+        $request->input('foto'); 
+        
+        //siapkan variabel untuk menampung file
+        $foto = $request->file('foto');
+        
+        //tentukan path file akan disimpan
+        $folder = 'uplode_data';
+
+        //pindahkan file ke target folder
+        $foto->move($folder, $foto->getClientOriginalName());
+        
+        // $tes = $request->validate([
+        //     'nik'=> 'required|max:16',
+        //     'tanggal_pengaduan'=>'required',
+        //     'isi_laporan'=>'required'
+        // ]);
+
+        $i->create([
+            'nik'=>$request->input('nik'),
+            'tgl_pengaduan'=>$request->input('tanggal'),
+            'foto'=>$foto->getClientOriginalName(),
+            'isi_laporan'=>$request->input('isi_laporan'),
+            'status'=>'0'
+        ]);
+
+        return back()->with('pesan','laporan berhasil dikirim');
     }
 
     public function dashboard(){

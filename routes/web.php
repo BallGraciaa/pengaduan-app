@@ -24,7 +24,8 @@ Route::get('/', function () {
 
 //data masyarakat
 Route::get('masyarakat',[MasyarakatController::class,'index']);
-Route::get('tambah',[MasyarakatController::class,'tambah']);
+Route::get('tambah',[MasyarakatController::class,'buatlapor']);
+Route::post('tambah',[MasyarakatController::class,'lapor']);
 
 
 
@@ -43,6 +44,7 @@ route::get('dashboardadmin',[Administrator_Controller::class,'dashboardadmin']);
 Route::get('loginadmin',[Administrator_Controller::class,'loginadmin']);
 route::post('loginadmin',[Administrator_Controller::class,'ceklogin']);
 route::get('regisadmin',[Administrator_Controller::class,'regis']);
+route::get('validasi',[Administrator_Controller::class,'validasi']);
 route::post('el',[Administrator_Controller::class,'petugas']);
 
 });

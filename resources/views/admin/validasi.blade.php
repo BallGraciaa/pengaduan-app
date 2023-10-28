@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 </head>
 <body>
      {{-- navbar --}}
@@ -32,28 +33,38 @@
       </nav> 
 
       {{-- body --}}
-      <div class="contrainer">
+      <div class="container">
         <div class="card shadow">
-            <div class="card-header teks-bg-white">
-                <h4 class="h4 card-title">
-                    Data Laporan Masyarakat
-                </h4>
+            <div class="card-header text-bg-white">
+                <h4 class="h4 card-title">Data Laporan Masyarakat</h4>
                 <div class="card-body">
                     <table id="tb_validasi" class="table table-hover table-bordered">
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>Nik</th>
-                                <th>Tanggal Pengaduan</th>
+                                <th>Tanggal</th>
                                 <th>Isi Laporan</th>
+                              <th>foto</th>
+                              <th>status</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($data as $item)
                                 <tr>
-                                    <td>{{ $item->id_pengaduan }}</td>
-                                    <td>{{ $item->nik }}</td>
+                                    <td>{{$item->id_pengaduan}}</td>
+                                    <td>{{ $item->nik}}</td>
+                                    <td>{{ $item->tgl_pengaduan}}</td>
+                                    <td>{{ $item->isi_laporan }}</td>
+                                    <td>{{ $item->foto }}</td>
+                                    <td>{{ $item->status }}</td>
+                                    <td>
+                                        <div class="d-flex gap-2 mb-3">
+                                            <button type="button"  class="btn btn-primary"> Cek Laporan</button>
+                                            
+                                        </div>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -61,7 +72,17 @@
                 </div>
             </div>
         </div>
-      </div>
+    </div>
+    <script src="/datatable/datatables.min.js"></script>
+    <script>
+        $('#tb_validasi').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'excel', 'pdf'
+            ]
+        });
+    </script>
+
 
 
 
