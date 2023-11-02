@@ -19,10 +19,8 @@ class Administrator_Controller extends Controller
         $ol = $ol->where('username',$request->input('username'))->where('password',$request->input('password'));
         
         if($ol->exists()){
-            session([
-                'username'=>$request->input('username'),
-                'password'=>$request->input('password')
-            ]);
+            $amin = $ol->first();   
+            session(['admin'=>$amin]);
             return redirect('admin');
         }
         return back()->with('pesan','username atau password salah');
@@ -68,5 +66,10 @@ class Administrator_Controller extends Controller
     public function tanggapann(){
         $lapor = new tanggapan;
         return view('admin.tanggapanadmin',['merek'=>$lapor->all()]); 
+    }
+    public function logout(){
+        session()->flush();
+        return back();
+
     }
 }

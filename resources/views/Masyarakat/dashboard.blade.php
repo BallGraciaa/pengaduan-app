@@ -36,7 +36,8 @@
               </li>
               <div class="container-fluid">
                 <form class="d-flex" role="search">
-                  <button class="btn btn-outline-success position-absolute top-2 end-0" type="submit">Logout</button>
+                 
+                  <a href="{{url('masyarakat/logout')}}">logout</a>
                 </form>
               </div>
             </ul>
@@ -57,7 +58,7 @@
 
 
 <div class="el" style="height: 100px;">
-  <a href="{{url('tambah')}}" class="btn btn-outline-dark">Tulis Laporan Anda</a>
+  <a href="{{url('masyarakat/tambah')}}" class="btn btn-outline-dark">Tulis Laporan Anda</a>
   
 </div>
 

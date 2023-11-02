@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 
 class MasyarakatController extends Controller
 {
+    public function index(){
+        return view("Masyarakat.dashboard");
+    }
     public function registrasi(){
         //buat objek model
         return view('Masyarakat.registrasi');
@@ -48,7 +51,9 @@ class MasyarakatController extends Controller
         $el = new masyarakat();
         // cek username dan password exists (ada) di tabel masyarakat
         if($el->where('username',$request->input('username'))->where('password',$request->input('password'))->exists()){
-            return redirect('/');
+            session(['username'=>$request->input('username')]);
+            return redirect('masyarakat');
+         
 
         }
         return back()->with('pesan','Username dan password tidak terdaftar');
@@ -91,6 +96,10 @@ class MasyarakatController extends Controller
 
     public function dashboard(){
         return view('Masyarakat.dashboard');
+    }
+    public function logoutt(){
+        session()->flush();
+        return back();
     }
 
 }

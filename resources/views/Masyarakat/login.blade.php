@@ -32,7 +32,7 @@
                       </div>
                     @endif
 
-                    <form action="{{ url('login') }}" method="POST">
+                    <form action="{{ url('masyarakat/login') }}" method="POST">
                         @csrf
                         <div class="mb-3">
                             <label for="username" class="form-label">Username</label>
@@ -53,11 +53,11 @@
                         @enderror
                         </div>
                         <div class="mb-3">
-                            <a href="dashboard" class="btn form-control btn-primary mb-2">Login</a>
-                            <a href="dashboard" class="btn form-control btn-outline-success mb-2" type="reset">Batal</a>
+                            <button type="submit" class="btn form-control btn-primary mb-2">Login</button>
                             {{-- <button class="btn form-control btn-primary mb-2">Login</button> --}}
+                            <a href="dashboard" class="btn form-control btn-outline-success mb-2" type="reset">Batal</a>
                             {{-- <button class="btn form-control btn-outline-success mb-2" type="reset">Batal</button> --}}
-                            <p class="text-center">Create New Account <a href="{{url('registrasi')}}">Registrasi</a>.</p>
+                            <p class="text-center">Create New Account <a href="{{url('masyarakat/registrasi')}}">Registrasi</a>.</p>
                     </form>
                 </div>
             </div>
